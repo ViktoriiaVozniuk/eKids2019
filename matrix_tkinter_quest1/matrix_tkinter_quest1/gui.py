@@ -2,17 +2,17 @@ print("DEBUG: Module 'gui.py' is executing")
 
 import logging
 
-#from matrix_tkinter_quest1.core import loggerConfigure
+# from matrix_tkinter_quest1.core import loggerConfigure
 
 import tkinter as tk
 from tkinter import ttk
 from tkinter import messagebox as tkmbox
 
-#import pkg_resources
+# import pkg_resources
 #
-#filename = "gui.py"
-#filepath = pkg_resources.resource_filename(__name__, filename)
-#print("DEBUG: Path: %s (__name__: %s)" % (filepath, __name__))
+# filename = "gui.py"
+# filepath = pkg_resources.resource_filename(__name__, filename)
+# print("DEBUG: Path: %s (__name__: %s)" % (filepath, __name__))
 
 import json
 
@@ -28,39 +28,36 @@ class Gui:
     questMap = [
         # Row 0
         [
-            {'current': 'C', 'next': {'row': 2 , 'col': 2}},   # Col 0-0
-           None, None, None, None# Col 4-1
+            {'current': 'S', 'next': {'row': 2, 'col': 1}},  # Col 0-0
+            {'current': 'A', 'next': {'row': 1, 'col': 4}},  # Col 1-3
+            {'current': 'E', 'next': {'row': -1, 'col': -1}},  # Col 2-2
+            {'current': 'E', 'next': {'row': 3, 'col': 0}},  # Col 3-0
         ],
 
         # Row 1
         [
-            None,None,None,None,None
+            {'current': 'U', 'next': {'row': 4, 'col': 0}},  # Col 0-1
+            {'current': 'I', 'next': {'row': 3, 'col': 3}},  # Col 1-2
+            {'current': 'C', 'next': {'row': 1, 'col': 3}},  # Col 2-0
+            {'current': 'C', 'next': {'row': 0, 'col': 3}},  # Col 3-0
         ],
 
         # Row 2
         [
-            None,None,
-            {'current': 'O', 'next': {'row': 4, 'col': 1}},   # Col 2-2
-            None,None
+            {'current': 'N', 'next': {'row': 1, 'col': 1}},  # Col 0-2
+            {'current': 'U', 'next': {'row': 1, 'col': 2}},  # Col 1-0
+            {'current': 'U', 'next': {'row': 0, 'col': 2}},  # Col 2-2
+            {'current': 'E', 'next': {'row': 0, 'col': 4}},  # Col 3-1
         ],
 
         # Row 3
         [
-            None,None,None,
-            {'current': 'L', 'next': {'row': -1, 'col': -1}},   # Col 3-2
-            None
-        ],
-
-        # Row 4
-        [
-            {'current': 'T', 'next': {'row': 4, 'col': 1}},   # Col 0-1
-            {'current': 'O', 'next': {'row': 3, 'col': 3}}, # Col 1-1
-            {'current': 'C', 'next': {'row': 3, 'col': 4}},   # Col 2-3
-            {'current': 'B', 'next': {'row': 2, 'col': 3}},   # Col 3-1
-            {'current': 'C', 'next': {'row': 3, 'col': 1}}    # Col 4-3
+            {'current': 'S', 'next': {'row': 3, 'col': 2}},  # Col 0-0
+            {'current': 'H', 'next': {'row': 0, 'col': 1}},  # Col 1-3
+            {'current': 'S', 'next': {'row': -1, 'col': -1}},  # Col 2-0
+            {'current': 'Q', 'next': {'row': 2, 'col': 2}},  # Col 3-2
         ]
     ]
-    
 
     MAIN_WINDOW_GEOMETRY = '400x573'
 
@@ -74,7 +71,7 @@ class Gui:
 
     MiddleFrameWidget_Left = tk.Frame(MiddleFrameWidget)
     MiddleFrameWidget_CenterLeft = tk.Frame(MiddleFrameWidget)
-    MiddleFrameWidget_CenterRight = tk.Frame(MiddleFrameWidget) # , width=300, height=600
+    MiddleFrameWidget_CenterRight = tk.Frame(MiddleFrameWidget)  # , width=300, height=600
     MiddleFrameWidget_Right = tk.Frame(MiddleFrameWidget)
 
     MatrixWidgets = list()
@@ -85,7 +82,7 @@ class Gui:
     def ChooseQuestCallback(self, event):
         index = self.quest.get()
         self.status.set('Chosen the quest %s' % index)
-        self.questChosen = int(index)-1
+        self.questChosen = int(index) - 1
 
         self.ChooseQuest()
 
@@ -112,7 +109,7 @@ class Gui:
         nextCol = cell['next']['col']
 
         if nextRow != -1 and \
-           nextCol != -1:
+                nextCol != -1:
             return self.markQuestRecursive(nextRow, nextCol)
 
         return 0
@@ -132,7 +129,7 @@ class Gui:
 
         cellText = guiCell_cellString.get()
 
-        if   cellText == '':
+        if cellText == '':
             guiCell_cellWidget.configure(bg=warning_color)
             return -1
 
@@ -147,48 +144,48 @@ class Gui:
         nextCol = questCell['next']['col']
 
         if nextRow != -1 and \
-           nextCol != -1:
+                nextCol != -1:
             return self.hintQuestRecursive(nextRow, nextCol, error_color, warning_color, success_color)
 
         self.showWinnerMessage()
         return 0
 
-#    def BeginsCallback(self):
-#        for index, begin in enumerate(self.quests):
-#            beginRow = begin['row']
-#            beginCol = begin['col']
-#
-#            try:
-#                guiCell = self.MatrixWidgets[beginRow][beginCol]
-#                guiCell_cellWidget = guiCell['cellWidget']
-#                guiCell_cellString = guiCell['cellString']
-#
-#                guiCell_cellWidget.configure(bg='deep sky blue')
-#            except IndexError:
-#                tkmbox.showinfo(title='Error: Quest begin point',
-#                                message="Quest with index '{}' can't begin from the point: row '{}', col '{}'".format(
-#                                    index,
-#                                    beginRow,
-#                                    beginCol
-#                                ))
+    #    def BeginsCallback(self):
+    #        for index, begin in enumerate(self.quests):
+    #            beginRow = begin['row']
+    #            beginCol = begin['col']
+    #
+    #            try:
+    #                guiCell = self.MatrixWidgets[beginRow][beginCol]
+    #                guiCell_cellWidget = guiCell['cellWidget']
+    #                guiCell_cellString = guiCell['cellString']
+    #
+    #                guiCell_cellWidget.configure(bg='deep sky blue')
+    #            except IndexError:
+    #                tkmbox.showinfo(title='Error: Quest begin point',
+    #                                message="Quest with index '{}' can't begin from the point: row '{}', col '{}'".format(
+    #                                    index,
+    #                                    beginRow,
+    #                                    beginCol
+    #                                ))
 
     def HintCallback(self):
-        hints = self.quests[ self.questChosen ].get('hints', 0) + 1
-        self.quests[ self.questChosen ]['hints'] = hints
+        hints = self.quests[self.questChosen].get('hints', 0) + 1
+        self.quests[self.questChosen]['hints'] = hints
 
         self.status.set('Hint number %s' % hints)
 
         self.Hint()
 
     def Hint(self):
-        row = self.quests[ self.questChosen ]['beginRow']
-        col = self.quests[ self.questChosen ]['beginCol']
+        row = self.quests[self.questChosen]['beginRow']
+        col = self.quests[self.questChosen]['beginCol']
 
         self.hintQuestRecursive(row, col, 'red', 'yellow', 'light green')
 
     def CheckCallback(self):
-        checks = self.quests[ self.questChosen ].get('checks', 0) + 1
-        self.quests[ self.questChosen ]['checks'] = checks
+        checks = self.quests[self.questChosen].get('checks', 0) + 1
+        self.quests[self.questChosen]['checks'] = checks
 
         self.status.set('Check number %s' % checks)
 
@@ -208,7 +205,7 @@ class Gui:
 
                 questIndex = questCell.get('questIndex')
                 if questIndex is not None and \
-                   questIndex == self.questChosen:
+                        questIndex == self.questChosen:
                     # Seems, something must be set here.
                     if questCell['current'] != guiCell_cellString.get():
                         # Wrong letter
@@ -223,16 +220,16 @@ class Gui:
                         # Correct letter
                         guiCell_cellWidget.configure(bg='light green')
 
-# Just ignore this case because this is not an error.
-#                    else:
-#                        # Cell does not belong to this quest.
-#                        guiCell_cellWidget.configure(bg='red')
-#                        tkmbox.showinfo(title="Mistake",
-#                                        message="You've made a mistake: Letter '{}'. Cell does not belong to this quest.".format(
-#                                            guiCell_text
-#                                        ))
-#                        guiCell_cellString.set('')
-#                        guiCell_cellWidget.configure(bg='white')
+    # Just ignore this case because this is not an error.
+    #                    else:
+    #                        # Cell does not belong to this quest.
+    #                        guiCell_cellWidget.configure(bg='red')
+    #                        tkmbox.showinfo(title="Mistake",
+    #                                        message="You've made a mistake: Letter '{}'. Cell does not belong to this quest.".format(
+    #                                            guiCell_text
+    #                                        ))
+    #                        guiCell_cellString.set('')
+    #                        guiCell_cellWidget.configure(bg='white')
 
     def __init__(self):
         self.ChooseQuest()
@@ -271,13 +268,13 @@ class Gui:
         label_actions.grid(column=0, row=0, sticky=tk.E)
 
         quest = ttk.Combobox(self.TopFrameWidget, width=20, textvariable=self.quest,
-                             values=[i+1 for i, _ in enumerate(self.quests)])
+                             values=[i + 1 for i, _ in enumerate(self.quests)])
         quest.grid(column=1, row=0, sticky=(tk.W, tk.E))
         quest.current(0)
         quest.bind("<<ComboboxSelected>>", self.ChooseQuestCallback)
 
-        #button_begins = tk.Button(self.TopFrameWidget, text='Begins', command=self.BeginsCallback)
-        #button_begins.grid(column=2, row=0, padx=5, pady=5, sticky=(tk.W, tk.E, tk.N, tk.S))
+        # button_begins = tk.Button(self.TopFrameWidget, text='Begins', command=self.BeginsCallback)
+        # button_begins.grid(column=2, row=0, padx=5, pady=5, sticky=(tk.W, tk.E, tk.N, tk.S))
 
         button_hint = tk.Button(self.TopFrameWidget, text='Hint', command=self.HintCallback)
         button_hint.grid(column=2, row=0, padx=5, pady=5, sticky=(tk.W, tk.E, tk.N, tk.S))
@@ -289,10 +286,10 @@ class Gui:
         # Middle Widget fulfilling
         #
         rowList = list()
-        for row in range(len(self.questMap)): # 4
+        for row in range(len(self.questMap)):  # 4
 
             colList = list()
-            for col in range(len(self.questMap[0])): # 4
+            for col in range(len(self.questMap[0])):  # 4
 
                 cellString = tk.StringVar()
                 cellWidget = tk.Entry(self.MiddleFrameWidget_CenterLeft, width=3, textvariable=cellString)
@@ -319,7 +316,7 @@ class Gui:
         # Bottom Widget fulfilling
         #
         statusWidget = tk.Label(self.BottomFrameWidget, text="Started", textvariable=self.status,
-                                     bd=1, relief=tk.SUNKEN, anchor=tk.W)
+                                bd=1, relief=tk.SUNKEN, anchor=tk.W)
         statusWidget.grid(column=0, row=4, padx=2, sticky=(tk.W, tk.E))
 
         self.windowWidget.mainloop()

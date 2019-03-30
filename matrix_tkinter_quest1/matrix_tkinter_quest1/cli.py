@@ -1,7 +1,7 @@
 print("DEBUG: Module 'cli.py' is executing")
 
-from core import loggerConfigure
-from gui import Gui
+from matrix_tkinter_quest1.core import loggerConfigure
+from matrix_tkinter_quest1.gui import Gui
 
 import argparse
 import logging
