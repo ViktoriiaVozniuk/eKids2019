@@ -20,42 +20,42 @@ import json
 class Gui:
     quests = [
         {'beginRow': 0, 'beginCol': 0},
-        {'beginRow': 4, 'beginCol': 3},
-        {'beginRow': 2, 'beginCol': 4},
-        {'beginRow': 4, 'beginCol': 4}
+        {'beginRow': 0, 'beginCol': 1},
+        {'beginRow': 0, 'beginCol': 2},
+        {'beginRow': 3, 'beginCol': 3}
     ]
     questChosen = 0
     questMap = [
         # Row 0
         [
-            {'current': 'S', 'next': {'row': 2, 'col': 1}},  # Col 0-0
-            {'current': 'A', 'next': {'row': 1, 'col': 4}},  # Col 1-3
-            {'current': 'E', 'next': {'row': -1, 'col': -1}},  # Col 2-2
-            {'current': 'E', 'next': {'row': 3, 'col': 0}},  # Col 3-0
+            {'current': 'H', 'next': {'row': 2, 'col': 1}},  # Col 0-0
+            {'current': 'C', 'next': {'row': 3, 'col': 2}},  # Col 1-3
+            {'current': 'D', 'next': {'row': 1, 'col': 1}},  # Col 2-2
+            {'current': 'D', 'next': {'row': 2, 'col': 1}},  # Col 3-0
         ],
 
         # Row 1
         [
-            {'current': 'U', 'next': {'row': 4, 'col': 0}},  # Col 0-1
-            {'current': 'I', 'next': {'row': 3, 'col': 3}},  # Col 1-2
-            {'current': 'C', 'next': {'row': 1, 'col': 3}},  # Col 2-0
-            {'current': 'C', 'next': {'row': 0, 'col': 3}},  # Col 3-0
+            {'current': 'M', 'next': {'row': 2, 'col': 0}},  # Col 0-1
+            {'current': 'O', 'next': {'row': 2, 'col': 2}},  # Col 1-2
+            {'current': 'P', 'next': {'row': 3, 'col': 1}},  # Col 2-0
+            {'current': 'E', 'next': {'row': 3, 'col': 0}},  # Col 3-0
         ],
 
         # Row 2
         [
-            {'current': 'N', 'next': {'row': 1, 'col': 1}},  # Col 0-2
-            {'current': 'U', 'next': {'row': 1, 'col': 2}},  # Col 1-0
-            {'current': 'U', 'next': {'row': 0, 'col': 2}},  # Col 2-2
-            {'current': 'E', 'next': {'row': 0, 'col': 4}},  # Col 3-1
+            {'current': 'E', 'next': {'row': 0, 'col': 2}},  # Col 0-2
+            {'current': 'A', 'next': {'row': 2, 'col': 3}},  # Col 1-0
+            {'current': 'G', 'next': {'row': 3, 'col': 3}},  # Col 2-2
+            {'current': 'P', 'next': {'row': 1, 'col': 2}},  # Col 3-1
         ],
 
         # Row 3
         [
-            {'current': 'S', 'next': {'row': 3, 'col': 2}},  # Col 0-0
-            {'current': 'H', 'next': {'row': 0, 'col': 1}},  # Col 1-3
-            {'current': 'S', 'next': {'row': -1, 'col': -1}},  # Col 2-0
-            {'current': 'Q', 'next': {'row': 2, 'col': 2}},  # Col 3-2
+            {'current': 'A', 'next': {'row': 0, 'col': 3}},  # Col 1-3
+            {'current': 'Y', 'next': {'row': 0, 'col': 1}},  # Col 2-0
+            {'current': 'O', 'next': {'row': 1, 'col': 0}},  # Col 3-2
+            {'current': 'L', 'next': {'row': 1, 'col': 3}},  # Col 0-0
         ]
     ]
 
